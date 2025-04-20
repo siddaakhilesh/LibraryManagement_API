@@ -27,7 +27,7 @@ public class BooksControllerTests
     [Fact]
     public async Task GetBooks_ReturnsOkResultAndLogs()
     {
-        // Arrange
+       
         var context = GetDbContext();
         context.Books.Add(new Book { Title = "Test Book", Author = "Author", Year = 2023 });
         context.SaveChanges();
@@ -36,10 +36,10 @@ public class BooksControllerTests
         var dbLogger = GetDbLogger(context);
         var controller = new BooksController(context, logger, dbLogger);
 
-        // Act
+        
         var result = await controller.GetBooks();
 
-        // Assert
+       
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         Assert.Single((List<Book>)okResult.Value);
 
@@ -51,7 +51,7 @@ public class BooksControllerTests
     [Fact]
     public async Task AddBook_ReturnsCreatedAndLogs()
     {
-        // Arrange
+        
         var context = GetDbContext();
         var logger = new LoggerFactory().CreateLogger<BooksController>();
         var dbLogger = GetDbLogger(context);
@@ -59,10 +59,10 @@ public class BooksControllerTests
 
         var book = new Book { Title = "New Book", Author = "Tester", Year = 2024 };
 
-        // Act
+       
         var result = await controller.AddBook(book);
 
-        // Assert
+        
         var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
         Assert.Equal("New Book", ((Book)createdResult.Value!).Title);
 
