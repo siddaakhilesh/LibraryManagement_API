@@ -10,5 +10,5 @@ public class AppDbContext : DbContext
 
     public DbSet<Book> Books => Set<Book>();
     public DbSet<LogEntry> Logs => Set<LogEntry>();
-
+    public DbSet<User> Users => Set<User>();
 }
